@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import NoteEditor from "../components/NoteEditor";
+import NoteCard from "../components/NoteCard";
 import api from "../api";
 
 function Notes() {
