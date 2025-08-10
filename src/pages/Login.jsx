@@ -12,8 +12,10 @@ async function handleSubmit(e){
   console.log(form)
  e.preventDefault();
  try{
-   const token = await (await api.post('/auth/login',form)).data
-   saveToken(token);
+   const response = await api.post('/auth/login',form);
+   console.log('Login response:', response.data);
+   console.log('Token to save:', response.data.token);
+   saveToken(response.data.token);
    nav('/'); 
  }catch(err){
    setError(err.response?.data?.message || 'Login Failed');

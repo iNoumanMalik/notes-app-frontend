@@ -10,7 +10,7 @@ function NoteEditor({ note, onSubmit, onCancel }) {
 
     })
     const handleChange = (e)=>{
-        setFormData({...form,[e.target.name]:e.target.value})
+        setFormData({...formData,[e.target.name]:e.target.value})
     }
 
     const handleSubmit = (e)=>{

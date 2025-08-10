@@ -16,7 +16,9 @@ function Notes() {
   const fetchNotes = async () => {
     try {
       setLoading(true);
-      const res = await (await api.get("/notes")).data;
+      console.log('Current token in localStorage:', localStorage.getItem('token'));
+      console.log('API headers:', api.defaults.headers.common);
+      const res =  (await api.get("/notes")).data;
       setData(res);
       console.log(res);
     } catch (e) {
@@ -48,14 +50,14 @@ function Notes() {
   return (
     <div>
       <h1>Notes</h1>
-      <button onClick={setEditing({})}>+ New Note</button>
+      <button onClick={() => setEditing({})}>+ New Note</button>
       {editing && (
         <NoteEditor note={editing} onSubmit={handleSave} onCancel={() => setEditing(null)} />
       )}
 
       <div>
         {data.map((note) => (
-          <NoteCard note={note} onEdit={handleSave} onDelete={handleDelete} />
+          <NoteCard key={note._id} note={note} onEdit={setEditing} onDelete={handleDelete} />
         ))}
       </div>
     </div>
