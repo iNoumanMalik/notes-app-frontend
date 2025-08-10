@@ -5,7 +5,6 @@ import { setToken } from './api';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Notes from './pages/Notes';
-import NoteEditor from './components/NoteEditor';
 
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
       <Route path='/register' element={<Register/>}/>
     </Routes>
 
-    <NoteEditor/>
     </div>
   )
 }
