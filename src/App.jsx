@@ -8,18 +8,25 @@ import Notes from './pages/Notes';
 
 
 function App() {
-
-  const [token,setTok] = useState(localStorage.getItem('token'))
+  const [token,setTok] = useState(() => {
+    const storedToken = localStorage.getItem('token');
+    // Clear invalid token immediately
+    if (storedToken === '[object Object]') {
+      localStorage.removeItem('token');
+      return null;
+    }
+    // Set token in axios headers immediately if valid token exists
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    return storedToken;
+  });
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Clear invalid token if it exists
-    if (token === '[object Object]') {
-      localStorage.removeItem('token');
-      setTok(null);
-      return;
-    }
-    if (token) setToken(token);
-  }, [token]);
+    // Mark as initialized after first render
+    setIsInitialized(true);
+  }, []);
 
   function saveToken(t){
     console.log('Saving token:', t);
@@ -30,9 +37,18 @@ function App() {
     }
     localStorage.setItem('token',t);
     setTok(t);
-    setToken(t);
+    setToken(t); // Set in axios headers
     console.log('Token saved to localStorage:', localStorage.getItem('token'));
   }
+  // Show loading state until app is initialized
+  if (!isInitialized) {
+    return (
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'100vh', color:'#e5e5e5'}}>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div style={{boxSizing:'border-box', }}>
     <Routes>
