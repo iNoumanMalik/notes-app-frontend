@@ -33,83 +33,42 @@ function Register() {
   };
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "lightcyan",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "50%",
-          height: "50%",
-          boxShadow: "10px 10px 10px 0px",
-          padding: "100px",
-          borderRadius: "10px",
-          backgroundColor: "lightblue",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h1>Register Account</h1>
-        {error && <p style={{color:'red'}}>{error}</p>}
-        <form
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-          onSubmit={handleSubmit}
-        >
-          <label
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "start",
-            }}
-            htmlFor="email"
-          >
-            Email:
+    <div className="container">
+      <div className="form-container">
+        <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column', gap:'20px'}}>
+          <h1>Create Account</h1>
+          {error && <p style={{color:'#ff6b6b', textAlign:'center', padding:'10px', background:'rgba(255,107,107,0.1)', borderRadius:'8px', border:'1px solid rgba(255,107,107,0.3)'}}>{error}</p>}
+          <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
+            <label style={{color:'#e5e5e5', fontWeight:'500'}} htmlFor="email">
+              Email Address
+            </label>
             <input
-              style={{ padding: "6px", borderRadius: "4px" }}
+              type="email"
               name="email"
               placeholder="Enter your email address"
               value={form.email}
               onChange={handleChange}
+              required
             />
-          </label>
-          <label
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "start",
-            }}
-            htmlFor="password"
-          >
-            Password:
+          </div>
+          <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
+            <label style={{color:'#e5e5e5', fontWeight:'500'}} htmlFor="password">
+              Password
+            </label>
             <input
-              style={{ padding: "6px", borderRadius: "4px" }}
+              type="password"
               name="password"
-              placeholder="Strong Password"
+              placeholder="Create a strong password"
               value={form.password}
               onChange={handleChange}
+              required
             />
-          </label>
-          <button type="submit">Register</button>
-          <p>
-            Already have an account{" "}
-            <a onClick={handleLogin} style={{ cursor: "pointer" }}>
-              Login
-            </a>
-          </p>
+          </div>
+          <button type="submit" style={{marginTop:'10px'}}>Create Account</button>
+          <div style={{textAlign:'center', marginTop:'20px'}}>
+            <span style={{color:'#a0a0a0'}}>Already have an account? </span>
+            <a style={{cursor:'pointer', color:'#e5e5e5', textDecoration:'underline'}} onClick={handleLogin}>Login</a>
+          </div>
         </form>
       </div>
     </div>

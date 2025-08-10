@@ -48,14 +48,21 @@ function Notes() {
   if (loading) return 'Loading...'
 
   return (
-    <div>
-      <h1>Notes</h1>
-      <button onClick={() => setEditing({})}>+ New Note</button>
+    <div className="container">
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'2rem'}}>
+        <h1>My Notes</h1>
+        <button onClick={() => setEditing({})} style={{background:'linear-gradient(135deg, #4a90e2 0%, #357abd 100%)', border:'1px solid #357abd'}}>
+          + New Note
+        </button>
+      </div>
+      
       {editing && (
-        <NoteEditor note={editing} onSubmit={handleSave} onCancel={() => setEditing(null)} />
+        <div style={{marginBottom:'2rem'}}>
+          <NoteEditor note={editing} onSubmit={handleSave} onCancel={() => setEditing(null)} />
+        </div>
       )}
 
-      <div>
+      <div className="notes-grid">
         {data.map((note) => (
           <NoteCard key={note._id} note={note} onEdit={setEditing} onDelete={handleDelete} />
         ))}
