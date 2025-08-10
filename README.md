@@ -1,6 +1,7 @@
 # Notes App - Frontend
 
 A modern, responsive React frontend for a notes management application with dark theme UI and real-time updates.
+Clone Backend Repo: https://github.com/iNoumanMalik/notes-app-backend
 
 ## Features
 
